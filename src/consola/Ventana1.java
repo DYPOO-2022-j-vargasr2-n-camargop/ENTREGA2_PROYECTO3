@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logica.Cronometro;
+import logica.Proyecto;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -27,6 +31,10 @@ import java.awt.Window.Type;
 
 public class Ventana1 extends JFrame {
 	
+	//Variables Logica
+	private Proyecto proyecto;
+	private Cronometro cronometro;
+	
 	//Variables
 
 	private JPanel contentPane;
@@ -36,7 +44,7 @@ public class Ventana1 extends JFrame {
 	private JTextField textField_fechaFin;
 	private JTextField textField_modFechaFin;
 	private JTextField textField_nombreparticipante;
-	private JTextField textField;
+	private JTextField textField_correopart;
 	private JTextField textField_nombreEliminarPart;
 	private JTextField textField_autorActividad;
 	private JTextField textField_tituloActividad;
@@ -60,6 +68,7 @@ public class Ventana1 extends JFrame {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					
 				}
 			}
 		});
@@ -70,7 +79,7 @@ public class Ventana1 extends JFrame {
 		setAlwaysOnTop(true);
 		setTitle("Proyecto 2 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1025, 684);
+		setBounds(100, 20, 1025, 684);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -103,10 +112,15 @@ public class Ventana1 extends JFrame {
 		textField_fechaFin = new JTextField();
 		textField_fechaFin.setColumns(10);
 		
+/////////////////////////////////////
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				crear_proyecto();
 			}
+
+			
 		});
 		btnCrear.setBackground(new Color(135, 206, 235));
 		
@@ -151,6 +165,14 @@ public class Ventana1 extends JFrame {
 		);
 		panelModFechaFin.setLayout(gl_panelModFechaFin);
 		
+/////////////////////////////////////
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				modificar_fecha();	
+			}
+		});
+		
 		JSeparator separator = new JSeparator();
 		
 		JSeparator separator2 = new JSeparator();
@@ -167,8 +189,8 @@ public class Ventana1 extends JFrame {
 		
 		JLabel lblcorreopart = new JLabel("Correo del participante:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textField_correopart = new JTextField();
+		textField_correopart.setColumns(10);
 		
 		JButton btnAgregar1 = new JButton("Agregar");
 		btnAgregar1.setBackground(new Color(135, 206, 250));
@@ -183,7 +205,7 @@ public class Ventana1 extends JFrame {
 								.addComponent(lblnombreparticipante, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panelAgregarParticipante.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textField)
+								.addComponent(textField_correopart)
 								.addComponent(textField_nombreparticipante, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
 								.addComponent(btnAgregar1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
 						.addComponent(lblAddparticipante, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE))
@@ -200,12 +222,21 @@ public class Ventana1 extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelAgregarParticipante.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblcorreopart)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_correopart, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnAgregar1)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelAgregarParticipante.setLayout(gl_panelAgregarParticipante);
+		
+/////////////////////////////////////
+		btnAgregar1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				agregar_participante();
+				
+			}
+		});
 		
 		JSeparator separator3 = new JSeparator();
 		
@@ -252,6 +283,15 @@ public class Ventana1 extends JFrame {
 		);
 		panelEliminarParticipante.setLayout(gl_panelEliminarParticipante);
 		
+/////////////////////////////////////
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				eliminar_participante();
+				
+			}
+		});
+		
 		JSeparator separator4 = new JSeparator();
 		
 		JPanel panelMostrarInfo = new JPanel();
@@ -259,6 +299,7 @@ public class Ventana1 extends JFrame {
 		JButton btnMostrarInfo = new JButton("Mostrar Informacion del proyecto");
 		btnMostrarInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		
@@ -490,7 +531,41 @@ public class Ventana1 extends JFrame {
 					.addComponent(panelCronometro, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+////////////////////////////////////////////
+		btnIniciar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				iniciar();
+			}
 		
+		});
+		
+		btnPausar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pausar();
+			}
+		
+		});
+		btnReanudar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				reanudar();
+			}
+		
+		});
+		btnTerminar.addActionListener(new ActionListener() {
+		
+		@Override
+			public void actionPerformed(ActionEvent e) {
+				terminar();
+			}
+
+		});
+////////////////////////////////////////////
 		JLabel lblRealizarReporte = new JLabel("Realizar Reporte");
 		lblRealizarReporte.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -572,11 +647,13 @@ public class Ventana1 extends JFrame {
 		JLabel lblFechaAgregarActividad = new JLabel("Fecha (yyyy-mm-dd):");
 		
 		textField_AddFechaActividad = new JTextField();
+		textField_AddFechaActividad.setText("");
 		textField_AddFechaActividad.setColumns(10);
 		
 		JLabel lblHorainicial_add = new JLabel("Hora inicial (hh:mm:ss):");
 		
 		textField_AddHoraInicial = new JTextField();
+		textField_AddFechaActividad.setText("");
 		textField_AddHoraInicial.setColumns(10);
 		
 		JLabel lblAddhorafinal = new JLabel("Hora final (hh:mm:ss):");
@@ -683,5 +760,109 @@ public class Ventana1 extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+//////////////////////////////////////////////////////////////////////////
+		btnAgregar2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				agregar_actividad();
+			}
+		});
+		
+	} //////////////INPUTS/////////////////
+
+
+	protected void iniciar() {
+		this.cronometro.iniciar_crono();
 	}
+
+
+	protected void pausar() {
+		this.cronometro.pausar_crono();
+	}
+
+
+	protected void reanudar() {
+		this.cronometro.reanudar();
+	}
+
+
+	protected void terminar() {
+		this.cronometro.terminar_crono();
+	}
+
+
+	protected void agregar_actividad() {
+		String autor = this.textField_autorActividad.getText();
+		String titulo = this.textField_tituloActividad.getText();
+		String descripcion = this.textField_descripcion.getText();
+		String tipo = this.textField_tipoActividad.getText();
+		String fecha = this.textField_AddFechaActividad.getText();
+		String Horai = this.textField_AddHoraInicial.getText();
+		String Horaf = this.textField_Addhorafinal.getText();
+		
+		if (fecha.equals("")) {
+			if (Horai.equals("")) {
+				this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_valorespordefecto(titulo, descripcion, autor, tipo, Horaf);
+			}
+		}
+		else {
+			this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_valoresmodificados(titulo, descripcion, autor, tipo, fecha, Horai, Horaf);
+		}
+		
+		this.textField_autorActividad.setText("");
+		this.textField_tituloActividad.setText("");
+		this.textField_descripcion.setText("");
+		this.textField_tipoActividad.setText("");
+		this.textField_AddFechaActividad.setText("");
+		this.textField_AddHoraInicial.setText("");
+		this.textField_Addhorafinal.setText("");
+		
+	}
+
+
+	protected void eliminar_participante() {
+		
+		String nombre = this.textField_nombreEliminarPart.getText();
+		this.proyecto.eliminar_participante(nombre);
+		this.textField_nombreEliminarPart.setText("");
+	}
+
+
+	protected void agregar_participante() {
+		
+		String nombre = this.textField_nombreparticipante.getText();
+		String correo = this.textField_correopart.getText();
+		this.proyecto.agregar_participante(nombre, correo);
+		this.textField_nombreparticipante.setText("");
+		this.textField_correopart.setText("");
+		
+	}
+
+
+	protected void modificar_fecha() {
+		
+		String fechaf_mod = this.textField_modFechaFin.getText();
+		this.proyecto.setFecha_final(fechaf_mod);
+		this.textField_modFechaFin.setText("");
+		
+	}
+
+	
+
+	protected void crear_proyecto() {
+		String nombre = this.textField_nombreproyecto.getText();
+		String descripcion = this.textField_descrip.getText();
+		String fechai = this.textField_fechaInicio.getText();
+		String fechaf = this.textField_fechaFin.getText();
+		this.proyecto = new Proyecto(nombre, descripcion, fechai, fechaf);
+		this.textField_nombreproyecto.setText("");
+		this.textField_descrip.setText("");
+		this.textField_fechaInicio.setText("");
+		this.textField_fechaFin.setText("");
+	}	
+	
+
+	
 }

@@ -321,8 +321,6 @@ public class consola {
 			ManejadorArchivos ma = new ManejadorArchivos();
 			this.proyecto = ma.leer_proyecto(this.proyecto);
 			ma.leer_participantes(this.proyecto);
-			ma.leer_actividades(this.proyecto);
-			
-				
+			ma.leer_actividades(this.proyecto);		
 		}
 }
