@@ -29,13 +29,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 
+@SuppressWarnings("serial")
 public class Ventana1 extends JFrame {
 	
-	//Variables Logica
+	//Variables Logic
+	
 	private Proyecto proyecto;
 	private Cronometro cronometro;
 	
-	//Variables
+	//Variables  
 
 	private JPanel contentPane;
 	private JTextField textField_nombreproyecto;
@@ -79,7 +81,8 @@ public class Ventana1 extends JFrame {
 		setAlwaysOnTop(true);
 		setTitle("Proyecto 2 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 20, 1025, 684);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -118,6 +121,7 @@ public class Ventana1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				crear_proyecto();
+				
 			}
 
 			
@@ -296,10 +300,11 @@ public class Ventana1 extends JFrame {
 		
 		JPanel panelMostrarInfo = new JPanel();
 		
+/////////////////////////////////////		
 		JButton btnMostrarInfo = new JButton("Mostrar Informacion del proyecto");
 		btnMostrarInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				mostar_info();	
 			}
 		});
 		
@@ -773,6 +778,13 @@ public class Ventana1 extends JFrame {
 	} //////////////INPUTS/////////////////
 
 
+	protected void mostar_info() {
+		MostrarInfoproy F = new MostrarInfoproy(this);
+		F.setVisible(true);
+		
+	}
+
+
 	protected void iniciar() {
 		this.cronometro.iniciar_crono();
 	}
@@ -861,6 +873,12 @@ public class Ventana1 extends JFrame {
 		this.textField_descrip.setText("");
 		this.textField_fechaInicio.setText("");
 		this.textField_fechaFin.setText("");
+		
+	}
+
+
+	public Proyecto getProyecto() {
+		return proyecto;
 	}	
 	
 

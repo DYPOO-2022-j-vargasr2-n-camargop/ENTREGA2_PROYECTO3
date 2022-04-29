@@ -1,9 +1,12 @@
 package logica;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Proyecto {
+@SuppressWarnings("deprecation")
+public class Proyecto extends Observable {
 
 	private String nombre;
 	private String descripcion;
@@ -39,6 +42,7 @@ public class Proyecto {
 	
 	
 	
+	
 ////////////////////////////////
 ////////////////////////////////
 	
@@ -52,7 +56,13 @@ public Proyecto(String nombre, String descripcion,String fecha_inicio,String fec
 		this.fecha_inicio = localDate_i;
 		LocalDate localDate_f = LocalDate.parse(fecha_final);
 		this.fecha_final = localDate_f;
-	}
+		this.notificarinfo();
+	}////////////// Observable /////////////
+
+private void notificarinfo() {
+	this.setChanged();
+	this.notifyObservers(this);
+}
 
 //getters and setters
 	public String getNombre() {
@@ -89,7 +99,7 @@ public Proyecto(String nombre, String descripcion,String fecha_inicio,String fec
 		return Participantes;
 	}
 
-	
+
 	
 	
 	
