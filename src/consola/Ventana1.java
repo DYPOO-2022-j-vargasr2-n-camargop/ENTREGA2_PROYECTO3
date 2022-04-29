@@ -1,21 +1,13 @@
 package consola;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import java.awt.EventQueue;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import logica.Cronometro;
 import logica.Proyecto;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JSplitPane;
-import javax.swing.JList;
-import java.awt.FlowLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -23,11 +15,10 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JSeparator;
 import java.awt.Font;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Window.Type;
+import java.awt.Frame;
 
 @SuppressWarnings("serial")
 public class Ventana1 extends JFrame {
@@ -78,14 +69,16 @@ public class Ventana1 extends JFrame {
 
 	
 	public Ventana1() {
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setAlwaysOnTop(true);
 		setTitle("Proyecto 2 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -110,7 +103,7 @@ public class Ventana1 extends JFrame {
 		textField_fechaInicio = new JTextField();
 		textField_fechaInicio.setColumns(10);
 		
-		JLabel lblfechaFin = new JLabel("Fecha Inicio (yyyy-mm-dd):");
+		JLabel lblfechaFin = new JLabel("Fecha Final (yyyy-mm-dd):");
 		
 		textField_fechaFin = new JTextField();
 		textField_fechaFin.setColumns(10);
@@ -148,8 +141,8 @@ public class Ventana1 extends JFrame {
 						.addComponent(lblModFechafin, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panelModFechaFin.createSequentialGroup()
 							.addComponent(lblfechafinmod, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_modFechaFin, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
+							.addGap(18)
+							.addComponent(textField_modFechaFin, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))
 					.addContainerGap(14, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_panelModFechaFin.createSequentialGroup()
 					.addContainerGap(308, Short.MAX_VALUE)
@@ -163,7 +156,7 @@ public class Ventana1 extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelModFechaFin.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblfechafinmod)
-						.addComponent(textField_modFechaFin, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_modFechaFin, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
 					.addComponent(btnModifica))
 		);
@@ -358,8 +351,7 @@ public class Ventana1 extends JFrame {
 			gl_panelCronometro.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelCronometro.createSequentialGroup()
 					.addGroup(gl_panelCronometro.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblcronometro, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panelCronometro.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
 							.addComponent(btnIniciar)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnPausar)
@@ -367,25 +359,26 @@ public class Ventana1 extends JFrame {
 							.addComponent(btnReanudar)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnTerminar))
-						.addGroup(gl_panelCronometro.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
 							.addComponent(lblNombreautorCrono)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField_autorCrono, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-						.addGroup(gl_panelCronometro.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
 							.addComponent(lblTitulocrono)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_tituloactCrono, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
-						.addGroup(gl_panelCronometro.createSequentialGroup()
-							.addComponent(lblDescripcionCrono, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_descripcionCrono, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
-						.addGroup(gl_panelCronometro.createSequentialGroup()
-							.addComponent(lblTipoActividadcrono, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_tipoactCrono, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+							.addComponent(textField_tituloactCrono, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
 						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
-							.addContainerGap(313, Short.MAX_VALUE)
-							.addComponent(btnAgregar3)))
+							.addComponent(lblDescripcionCrono, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(textField_descripcionCrono, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
+							.addComponent(lblTipoActividadcrono, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField_tipoactCrono, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.TRAILING, gl_panelCronometro.createSequentialGroup()
+							.addContainerGap(317, Short.MAX_VALUE)
+							.addComponent(btnAgregar3))
+						.addComponent(lblcronometro, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		gl_panelCronometro.setVerticalGroup(
@@ -419,70 +412,70 @@ public class Ventana1 extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelCronometro.setLayout(gl_panelCronometro);
+		
+		JSeparator separator7_1 = new JSeparator();
 		GroupLayout gl_panelCrear = new GroupLayout(panelCrear);
 		gl_panelCrear.setHorizontalGroup(
 			gl_panelCrear.createParallelGroup(Alignment.LEADING)
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
-				.addComponent(separator3, GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
-				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(separator4, GroupLayout.PREFERRED_SIZE, 378, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(295, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelAgregarActividad, 0, 0, Short.MAX_VALUE)
 						.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(panelEliminarParticipante, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
 							.addComponent(panelMostrarInfo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)))
-					.addContainerGap(276, Short.MAX_VALUE))
+					.addContainerGap(283, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelCrear.createSequentialGroup()
-							.addComponent(lblfechaFin, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_fechaFin, GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
-						.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING, false)
-							.addGroup(gl_panelCrear.createSequentialGroup()
-								.addComponent(lblfechaProy)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_fechaInicio))
-							.addGroup(gl_panelCrear.createSequentialGroup()
+							.addContainerGap(345, Short.MAX_VALUE)
+							.addComponent(btnCrear))
+						.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING)
+							.addGroup(Alignment.LEADING, gl_panelCrear.createSequentialGroup()
 								.addComponent(lblDescripcionDelProyecto)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(textField_descrip))
-							.addGroup(gl_panelCrear.createSequentialGroup()
+							.addGroup(Alignment.LEADING, gl_panelCrear.createSequentialGroup()
 								.addComponent(lblNombreProy)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_nombreproyecto, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_panelCrear.createSequentialGroup()
-							.addContainerGap(341, Short.MAX_VALUE)
-							.addComponent(btnCrear)))
+								.addComponent(textField_nombreproyecto, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE))
+							.addGroup(Alignment.LEADING, gl_panelCrear.createSequentialGroup()
+								.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblfechaFin, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+									.addComponent(lblfechaProy))
+								.addGap(18)
+								.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField_fechaFin, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+									.addComponent(textField_fechaInicio, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))))
 					.addGap(273))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addComponent(panelReporte, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(281, Short.MAX_VALUE))
-				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(separator5, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(separator6, GroupLayout.PREFERRED_SIZE, 378, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(285, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addComponent(lblCrearProy, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
-				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(separator7, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(281, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(panelAgregarParticipante, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(separator2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
 					.addContainerGap(272, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
+					.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, 393, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(284, Short.MAX_VALUE))
+				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addComponent(panelCronometro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, 393, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(280, Short.MAX_VALUE))
+					.addComponent(separator7_1, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_panelCrear.createSequentialGroup()
+					.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(separator7, Alignment.LEADING)
+						.addComponent(separator5, Alignment.LEADING)
+						.addComponent(separator6, Alignment.LEADING)
+						.addComponent(separator4, Alignment.LEADING)
+						.addComponent(separator3, Alignment.LEADING)
+						.addComponent(separator, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+					.addContainerGap(174, Short.MAX_VALUE))
 		);
 		gl_panelCrear.setVerticalGroup(
 			gl_panelCrear.createParallelGroup(Alignment.LEADING)
@@ -497,17 +490,17 @@ public class Ventana1 extends JFrame {
 						.addComponent(lblDescripcionDelProyecto)
 						.addComponent(textField_descrip, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblfechaProy)
-						.addComponent(textField_fechaInicio, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(textField_fechaInicio, 0, 0, Short.MAX_VALUE)
+						.addComponent(lblfechaProy, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(12)
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblfechaFin)
-						.addComponent(textField_fechaFin, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-					.addGap(12)
+						.addComponent(textField_fechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(7)
 					.addComponent(btnCrear)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(3)
@@ -515,26 +508,28 @@ public class Ventana1 extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelAgregarParticipante, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(separator3, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelEliminarParticipante, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(separator4, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelMostrarInfo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(8)
 					.addComponent(separator6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelAgregarActividad, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(separator5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(8)
+					.addComponent(separator5, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelReporte, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(separator7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(separator7, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelCronometro, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(panelCronometro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(separator7_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(259, Short.MAX_VALUE))
 		);
 ////////////////////////////////////////////
 		btnIniciar.addActionListener(new ActionListener() {
@@ -614,15 +609,15 @@ public class Ventana1 extends JFrame {
 		gl_panelMostrarInfo.setHorizontalGroup(
 			gl_panelMostrarInfo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelMostrarInfo.createSequentialGroup()
-					.addGap(96)
-					.addComponent(btnMostrarInfo)
-					.addContainerGap(142, Short.MAX_VALUE))
+					.addGap(75)
+					.addComponent(btnMostrarInfo, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(63, Short.MAX_VALUE))
 		);
 		gl_panelMostrarInfo.setVerticalGroup(
 			gl_panelMostrarInfo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelMostrarInfo.createSequentialGroup()
 					.addComponent(btnMostrarInfo)
-					.addContainerGap(12, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelMostrarInfo.setLayout(gl_panelMostrarInfo);
 		
@@ -751,17 +746,18 @@ public class Ventana1 extends JFrame {
 		);
 		panelAgregarActividad.setLayout(gl_panelAgregarActividad);
 		panelCrear.setLayout(gl_panelCrear);
+		contentPane.setSize(400,1000);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(456, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(471, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 801, GroupLayout.PREFERRED_SIZE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 997, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
@@ -880,7 +876,4 @@ public class Ventana1 extends JFrame {
 	public Proyecto getProyecto() {
 		return proyecto;
 	}	
-	
-
-	
 }
