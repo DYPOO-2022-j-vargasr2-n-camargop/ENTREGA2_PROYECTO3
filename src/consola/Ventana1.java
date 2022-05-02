@@ -830,18 +830,25 @@ public class Ventana1 extends JFrame {
 		panelAgregarActividad.setLayout(gl_panelAgregarActividad);
 		panelCrear.setLayout(gl_panelCrear);
 		contentPane.setSize(400,1000);
+		
+		JPanel panelMatrizActividades = new JPanel();
+		panelMatrizActividades.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 541, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(471, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panelMatrizActividades, GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 1064, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panelMatrizActividades, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE))
+					.addContainerGap(238, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
