@@ -5,8 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Participante {
+public class Participante extends Observable{
 	
 	private String nombre;
 	private String Correo;
@@ -27,6 +28,7 @@ public class Participante {
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
+		this.notificar();
     }
 //------------------------------------------			
 	public void agregar_actividadActividad_valoresmodificados(String titulo, String descripcion, String autor,
@@ -44,6 +46,7 @@ public class Participante {
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
+		this.notificar();
     }
 //------------------------------------------	
 	public void agregar_actividadActividad_Crono(String titulo, String descripcion, String autor, String tipo, 
@@ -60,6 +63,7 @@ public class Participante {
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
+		this.notificar();
     }
 //------------------------------------------	
 	public double calcular_tiempo_invertidototal() {
@@ -196,5 +200,13 @@ public class Participante {
 		this.dueno = Boolean.parseBoolean(dueno);
 	}
 	
+/////////////NOTIFICAR////////////////
+	
+	@SuppressWarnings("deprecation")
+	public void notificar() {
+		
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 }
