@@ -1,12 +1,8 @@
 package consola;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 
-import javax.swing.JLabel;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import logica.Proyecto;
@@ -27,12 +23,22 @@ public class PLienzo extends JPanel {
 		
 		if (this.proyecto != null) {
 			
-			g.drawString("Nombre Proyecto: "+ this.proyecto.getNombre(), ALLBITS, ABORT);
 			
+			g.drawString("INFORMACION PROYECTO", (this.getWidth()/2)-100, (this.getHeight()/2)-110);
+			g.setColor(new Color(0, 0, 0));
+			g.drawString("Nombre Proyecto: "+this.proyecto.getNombre(), (this.getWidth()/2)-95, (this.getHeight()/2)-70);
+			g.drawString("Descripcion: "+this.proyecto.getDescripcion(), (this.getWidth()/2)-95, (this.getHeight()/2)-50);
+			g.drawString("Fecha Inicio: "+this.proyecto.getFecha_inicio(), (this.getWidth()/2)-95, (this.getHeight()/2)-30);
+			g.drawString("Fecha Final: "+this.proyecto.getFecha_final(), (this.getWidth()/2)-95, (this.getHeight()/2)-10);
+			g.drawString("Numero Participantes: "+this.proyecto.getParticipantes().size(), (this.getWidth()/2)-95, (this.getHeight()/2)+10);
+			g.drawString("Participantes: " + this.proyecto.getParticipantes().keySet(), (this.getWidth()/2)-250, (this.getHeight()/2)+30);
+			
+			
+				
 			
 		}else {
 
-			g.drawString("NO HAY PROYECTO", ALLBITS, ABORT);
+			g.drawString("NO HAY PROYECTO",(this.getWidth()/2)-70, this.getHeight()/2);
 		}
 		
 	}

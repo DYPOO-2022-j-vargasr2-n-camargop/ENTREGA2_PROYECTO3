@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import logica.Cronometro;
+import logica.ManejadorArchivos;
 import logica.Proyecto;
+import logica.Reporte;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
@@ -17,6 +20,7 @@ import javax.swing.JSeparator;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Frame;
 import javax.swing.SwingConstants;
@@ -85,6 +89,7 @@ public class Ventana1 extends JFrame {
 		
 		JPanel panelCrear = new JPanel();
 		scrollPane.setViewportView(panelCrear);
+		
 		
 		JLabel lblCrearProy = new JLabel("Crear Proyecto");
 		lblCrearProy.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -316,15 +321,8 @@ public class Ventana1 extends JFrame {
 		
 		JLabel lblcronometro = new JLabel("Cronometro");
 		lblcronometro.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		JButton btnIniciar = new JButton("Iniciar");
-		
-		JButton btnPausar = new JButton("Pausar");
-		
-		JButton btnReanudar = new JButton("Reanudar");
-		
-		JButton btnTerminar = new JButton("Terminar");
-		
+		JLabel lblEstadoCrono = new JLabel("ESTADO");
+
 		JLabel lblNombreautorCrono = new JLabel("Nombre del autor de la actividad:");
 		
 		textField_autorCrono = new JTextField();
@@ -348,7 +346,65 @@ public class Ventana1 extends JFrame {
 		JButton btnAgregar3 = new JButton("Agregar");
 		btnAgregar3.setBackground(new Color(135, 206, 250));
 		
-		JLabel lblEstadoCrono = new JLabel("ESTADO");
+/////////////////////////////////////////////////////////////////////////////
+		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.addActionListener(new ActionListener() {
+
+@Override
+		public void actionPerformed(ActionEvent e) {
+			iniciar();
+			lblEstadoCrono.setText("Iniciado");
+			lblEstadoCrono.repaint();
+		
+		}
+		});
+	
+		JButton btnPausar = new JButton("Pausar");
+		btnPausar.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			pausar();
+			lblEstadoCrono.setText("Pausado");
+			lblEstadoCrono.repaint();
+			}
+		});
+	
+	
+		JButton btnReanudar = new JButton("Reanudar");
+		btnReanudar.addActionListener(new ActionListener() {
+	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			reanudar();
+			lblEstadoCrono.setText("Reanudado");
+			lblEstadoCrono.repaint();
+			}
+		});
+		
+		JButton btnTerminar = new JButton("Terminar");
+		btnTerminar.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			terminar();
+			double d = Ventana1.this.cronometro.getTiempo_invertido();
+			lblEstadoCrono.setText("End:"+ Math.round(d*100.0)/100.0 +" min");
+			lblEstadoCrono.repaint();
+	
+			}
+		});
+/////////////////////////////////////////////////////////////////////////////
+		btnAgregar3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addcrono();
+				
+			}
+		});
+		
+/////////////////////////////////////////////////////////////////////////////
 		lblEstadoCrono.setHorizontalAlignment(SwingConstants.RIGHT);
 		GroupLayout gl_panelCronometro = new GroupLayout(panelCronometro);
 		gl_panelCronometro.setHorizontalGroup(
@@ -420,15 +476,39 @@ public class Ventana1 extends JFrame {
 					.addComponent(btnAgregar3)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
+		
+//
 		panelCronometro.setLayout(gl_panelCronometro);
 		
 		JSeparator separator7_1 = new JSeparator();
 		
 		JButton btnCargartodo = new JButton("Cargar");
 		btnCargartodo.setBackground(new Color(135, 206, 250));
+///////////////////////////////////////////////////////////////////////
+		btnCargartodo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cargardatos();
+			}
+		});
+	
 		
 		JButton btnGuardartodo = new JButton("Guardar");
 		btnGuardartodo.setBackground(new Color(135, 206, 250));
+		
+		btnGuardartodo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				guardardatos();
+				
+			}
+		});
+		
+///////////////////////////////////////////////////////////////////////
+
+		
 		GroupLayout gl_panelCrear = new GroupLayout(panelCrear);
 		gl_panelCrear.setHorizontalGroup(
 			gl_panelCrear.createParallelGroup(Alignment.LEADING)
@@ -555,41 +635,7 @@ public class Ventana1 extends JFrame {
 						.addComponent(btnCargartodo))
 					.addContainerGap(230, Short.MAX_VALUE))
 		);
-////////////////////////////////////////////
-		btnIniciar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				iniciar();
-			}
-		
-		});
-		
-		btnPausar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				pausar();
-			}
-		
-		});
-		btnReanudar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				reanudar();
-			}
-		
-		});
-		btnTerminar.addActionListener(new ActionListener() {
-		
-		@Override
-			public void actionPerformed(ActionEvent e) {
-				terminar();
-			}
 
-		});
-////////////////////////////////////////////
 		JLabel lblRealizarReporte = new JLabel("Realizar Reporte");
 		lblRealizarReporte.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
@@ -637,6 +683,17 @@ public class Ventana1 extends JFrame {
 					.addComponent(btnMostrarInfo, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(63, Short.MAX_VALUE))
 		);
+///////////////////////////////////////////////////////7
+		btnRealizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				realizar_reporte();
+				
+			}
+		});
+		
 		gl_panelMostrarInfo.setVerticalGroup(
 			gl_panelMostrarInfo.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelMostrarInfo.createSequentialGroup()
@@ -798,6 +855,49 @@ public class Ventana1 extends JFrame {
 	} //////////////INPUTS/////////////////
 
 
+	protected void realizar_reporte() {
+
+		String nombre = textField_nombreReporte.getText();
+		FReporte F = new FReporte(this,nombre);
+		F.setVisible(true);
+		textField_nombreReporte.setText("");
+		
+	}
+
+
+	protected void guardardatos() {
+		ManejadorArchivos ma = new ManejadorArchivos();
+		ma.guardar_proyecto(this.proyecto);
+		ma.guardar_participantes(this.proyecto);
+		ma.guardar_actividades(this.proyecto);
+	}
+
+
+	protected void cargardatos() {
+		ManejadorArchivos ma = new ManejadorArchivos();
+		this.proyecto = ma.leer_proyecto(this.proyecto);
+		ma.leer_participantes(this.proyecto);
+		ma.leer_actividades(this.proyecto);	
+	}
+
+
+	protected void addcrono() {
+		String autor = this.textField_autorCrono.getText();
+		String titulo = this.textField_tituloactCrono.getText();
+		String descripcion = this.textField_descripcionCrono.getText();
+		String tipo = this.textField_tipoactCrono.getText();
+		Cronometro c = this.cronometro;
+		
+		this.proyecto.getParticipantes().get(autor).agregar_actividadActividad_Crono(titulo, descripcion, autor, tipo,c.getFecha(),
+				c.getHora_inicio(), c.getHora_final(), c.getTiempo_invertido());
+		
+		this.textField_autorCrono.setText("");
+		this.textField_tituloactCrono.setText("");
+		this.textField_descripcionCrono.setText("");
+		this.textField_tipoactCrono.setText("");
+	}
+
+
 	protected void mostar_info() {
 		MostrarInfoproy F = new MostrarInfoproy(this);
 		F.setVisible(true);
@@ -806,7 +906,9 @@ public class Ventana1 extends JFrame {
 
 
 	protected void iniciar() {
+		this.cronometro = new Cronometro();
 		this.cronometro.iniciar_crono();
+		
 	}
 
 
@@ -888,7 +990,11 @@ public class Ventana1 extends JFrame {
 		String descripcion = this.textField_descrip.getText();
 		String fechai = this.textField_fechaInicio.getText();
 		String fechaf = this.textField_fechaFin.getText();
-		this.proyecto = new Proyecto(nombre, descripcion, fechai, fechaf);
+		if (fechaf.equals("")){
+			this.proyecto = new Proyecto(nombre, descripcion, fechai, fechai);
+		}else {
+			this.proyecto = new Proyecto(nombre, descripcion, fechai, fechaf);
+		}
 		this.textField_nombreproyecto.setText("");
 		this.textField_descrip.setText("");
 		this.textField_fechaInicio.setText("");
