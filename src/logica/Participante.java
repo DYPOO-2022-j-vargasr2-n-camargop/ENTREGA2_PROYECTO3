@@ -28,7 +28,7 @@ public class Participante extends Observable{
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
-		this.notificar();
+		this.notificar(Acti);
     }
 //------------------------------------------			
 	public void agregar_actividadActividad_valoresmodificados(String titulo, String descripcion, String autor,
@@ -46,7 +46,7 @@ public class Participante extends Observable{
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
-		this.notificar();
+		this.notificar(Acti);
     }
 //------------------------------------------	
 	public void agregar_actividadActividad_Crono(String titulo, String descripcion, String autor, String tipo, 
@@ -63,7 +63,7 @@ public class Participante extends Observable{
 			listActi.add(Acti);
 			Actividades.put(titulo,listActi);
 		}
-		this.notificar();
+		this.notificar(Acti);
     }
 //------------------------------------------	
 	public double calcular_tiempo_invertidototal() {
@@ -203,10 +203,11 @@ public class Participante extends Observable{
 /////////////NOTIFICAR////////////////
 	
 	@SuppressWarnings("deprecation")
-	public void notificar() {
+	public void notificar(Actividad Acti) {
 		
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(Acti);
+		
 	}
 
 }

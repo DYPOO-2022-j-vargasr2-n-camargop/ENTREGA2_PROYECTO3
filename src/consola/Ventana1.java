@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import logica.Cronometro;
 import logica.ManejadorArchivos;
+import logica.Participante;
 import logica.Proyecto;
 import logica.Reporte;
 
@@ -58,6 +59,7 @@ public class Ventana1 extends JFrame {
 	private JTextField textField_tituloactCrono;
 	private JTextField textField_descripcionCrono;
 	private JTextField textField_tipoactCrono;
+	private PmatrizAct panelMatrizActividades;
 
 	
 	public static void main(String[] args) {
@@ -831,7 +833,8 @@ public class Ventana1 extends JFrame {
 		panelCrear.setLayout(gl_panelCrear);
 		contentPane.setSize(400,1000);
 		
-		JPanel panelMatrizActividades = new JPanel();
+		//JPanel panelMatrizActividades = new JPanel();
+		panelMatrizActividades = new PmatrizAct() ;
 		panelMatrizActividades.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -886,7 +889,11 @@ public class Ventana1 extends JFrame {
 		ManejadorArchivos ma = new ManejadorArchivos();
 		this.proyecto = ma.leer_proyecto(this.proyecto);
 		ma.leer_participantes(this.proyecto);
+		for (Participante par : this.proyecto.getParticipantes().values()) {
+			par.addObserver(panelMatrizActividades);
+		}
 		ma.leer_actividades(this.proyecto);	
+		
 	}
 
 
@@ -978,6 +985,7 @@ public class Ventana1 extends JFrame {
 		String nombre = this.textField_nombreparticipante.getText();
 		String correo = this.textField_correopart.getText();
 		this.proyecto.agregar_participante(nombre, correo);
+		this.proyecto.getParticipantes().get(nombre).addObserver(panelMatrizActividades);
 		this.textField_nombreparticipante.setText("");
 		this.textField_correopart.setText("");
 		
