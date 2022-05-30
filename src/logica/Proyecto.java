@@ -38,6 +38,34 @@ public class Proyecto {
 		
 		return rep;
 	}
+////////////////////////////////////////////////////////////////////////////////////
+	public HashMap<String, ArrayList<Actividad>>  infowbs() {
+		
+		HashMap<String, ArrayList<Actividad>> infowbs = new HashMap<String, ArrayList<Actividad>> ();
+		
+		for (String Part : this.getParticipantes().keySet()) {						
+			for (String ActiN : Participantes.get(Part).getActividades().keySet()) {				
+				for (Actividad Acti : Participantes.get(Part).getActividades().get(ActiN)){					
+					if(infowbs.containsKey(Acti.getTipo())) {		
+						
+						infowbs.get(Acti.getTipo()).add(Acti);
+						
+					}
+					else {
+						ArrayList<Actividad> list = new ArrayList<Actividad>(); 
+						list.add(Acti);
+						infowbs.put(Acti.getTipo(), list);
+						;
+					}					
+				}				
+			}	
+		}
+		
+		
+		
+		
+		return infowbs;
+	}
 	
 	
 	
