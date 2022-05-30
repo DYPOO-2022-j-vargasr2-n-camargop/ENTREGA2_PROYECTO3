@@ -8,12 +8,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import logica.Actividad;
 import logica.Participante;
 import logica.Proyecto;
 
-public class PmatrizAct extends JPanel implements Observer {
+public class PmatrizAct extends JScrollPane implements Observer {
 
 	private ArrayList<Actividad> actividades;
 	

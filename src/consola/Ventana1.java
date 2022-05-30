@@ -19,6 +19,8 @@ import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JSeparator;
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -26,6 +28,8 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Frame;
+import java.awt.ScrollPane;
+
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -60,6 +64,7 @@ public class Ventana1 extends JFrame {
 	private JTextField textField_descripcionCrono;
 	private JTextField textField_tipoactCrono;
 	private PmatrizAct panelMatrizActividades;
+	private JScrollPane sp;
 
 	
 	public static void main(String[] args) {
@@ -80,7 +85,7 @@ public class Ventana1 extends JFrame {
 	public Ventana1() {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setAlwaysOnTop(true);
-		setTitle("Proyecto 2 ");
+		setTitle("Proyecto 3 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		contentPane = new JPanel();
@@ -834,6 +839,9 @@ public class Ventana1 extends JFrame {
 		contentPane.setSize(400,1000);
 		
 		//JPanel panelMatrizActividades = new JPanel();
+		
+	
+		
 		panelMatrizActividades = new PmatrizAct() ;
 		panelMatrizActividades.setBackground(Color.LIGHT_GRAY);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
