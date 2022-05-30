@@ -31,6 +31,8 @@ import java.awt.Frame;
 import java.awt.ScrollPane;
 
 import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class Ventana1 extends JFrame {
@@ -154,15 +156,13 @@ public class Ventana1 extends JFrame {
 				.addGroup(gl_panelModFechaFin.createSequentialGroup()
 					.addGroup(gl_panelModFechaFin.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblModFechafin, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panelModFechaFin.createSequentialGroup()
-							.addComponent(lblfechafinmod, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(textField_modFechaFin, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))
-					.addContainerGap(14, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panelModFechaFin.createSequentialGroup()
-					.addContainerGap(308, Short.MAX_VALUE)
-					.addComponent(btnModifica)
-					.addContainerGap())
+						.addGroup(gl_panelModFechaFin.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnModifica)
+							.addGroup(gl_panelModFechaFin.createSequentialGroup()
+								.addComponent(lblfechafinmod, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField_modFechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(170, Short.MAX_VALUE))
 		);
 		gl_panelModFechaFin.setVerticalGroup(
 			gl_panelModFechaFin.createParallelGroup(Alignment.LEADING)
@@ -515,6 +515,9 @@ public class Ventana1 extends JFrame {
 			}
 		});
 		
+		JPanel panelWBS = new JPanel();
+		panelWBS.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
 ///////////////////////////////////////////////////////////////////////
 
 		
@@ -527,7 +530,7 @@ public class Ventana1 extends JFrame {
 						.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
 							.addComponent(panelEliminarParticipante, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
 							.addComponent(panelMostrarInfo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)))
-					.addContainerGap(284, Short.MAX_VALUE))
+					.addContainerGap(285, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelCrear.createSequentialGroup()
@@ -557,14 +560,6 @@ public class Ventana1 extends JFrame {
 					.addComponent(lblCrearProy, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(panelAgregarParticipante, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(separator2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
-					.addContainerGap(272, Short.MAX_VALUE))
-				.addGroup(gl_panelCrear.createSequentialGroup()
-					.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, 393, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(284, Short.MAX_VALUE))
-				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addComponent(panelCronometro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_panelCrear.createSequentialGroup()
@@ -578,13 +573,22 @@ public class Ventana1 extends JFrame {
 					.addContainerGap(347, Short.MAX_VALUE))
 				.addGroup(gl_panelCrear.createSequentialGroup()
 					.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(separator4, Alignment.LEADING)
-						.addComponent(separator6, Alignment.LEADING)
-						.addComponent(separator5, Alignment.LEADING)
-						.addComponent(separator7, Alignment.LEADING)
-						.addComponent(separator3, Alignment.LEADING)
+						.addComponent(separator4, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(separator6, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(separator5, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(separator7, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(separator3, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(separator, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
 					.addContainerGap(174, Short.MAX_VALUE))
+				.addGroup(gl_panelCrear.createSequentialGroup()
+					.addGroup(gl_panelCrear.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_panelCrear.createSequentialGroup()
+							.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panelWBS, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(panelAgregarParticipante, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(separator2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
+					.addContainerGap(272, Short.MAX_VALUE))
 		);
 		gl_panelCrear.setVerticalGroup(
 			gl_panelCrear.createParallelGroup(Alignment.LEADING)
@@ -611,8 +615,10 @@ public class Ventana1 extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
+					.addGroup(gl_panelCrear.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelModFechaFin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelWBS, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator2, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelAgregarParticipante, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
@@ -644,6 +650,34 @@ public class Ventana1 extends JFrame {
 						.addComponent(btnCargartodo))
 					.addContainerGap(230, Short.MAX_VALUE))
 		);
+		
+		JButton btnWBS = new JButton("Generar WBS");
+		btnWBS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JButton btnReporteGraficas = new JButton("Reporte Graficas");
+		GroupLayout gl_panelWBS = new GroupLayout(panelWBS);
+		gl_panelWBS.setHorizontalGroup(
+			gl_panelWBS.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelWBS.createSequentialGroup()
+					.addGap(44)
+					.addGroup(gl_panelWBS.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnWBS)
+						.addComponent(btnReporteGraficas))
+					.addGap(55))
+		);
+		gl_panelWBS.setVerticalGroup(
+			gl_panelWBS.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelWBS.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnReporteGraficas)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnWBS)
+					.addContainerGap())
+		);
+		panelWBS.setLayout(gl_panelWBS);
 
 		JLabel lblRealizarReporte = new JLabel("Realizar Reporte");
 		lblRealizarReporte.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -836,7 +870,7 @@ public class Ventana1 extends JFrame {
 		);
 		panelAgregarActividad.setLayout(gl_panelAgregarActividad);
 		panelCrear.setLayout(gl_panelCrear);
-		contentPane.setSize(400,1000);
+		contentPane.setSize(400,2000);
 		
 		//JPanel panelMatrizActividades = new JPanel();
 		
