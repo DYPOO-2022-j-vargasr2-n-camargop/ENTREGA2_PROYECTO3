@@ -24,14 +24,14 @@ public class PLienzo extends JPanel {
 		if (this.proyecto != null) {
 			
 			
-			g.drawString("INFORMACION PROYECTO", (this.getWidth()/2)-100, (this.getHeight()/2)-110);
+			g.drawString("INFORMACION PROYECTO", (this.getWidth()/2)-500, (this.getHeight()/2)-110);
 			g.setColor(new Color(0, 0, 0));
-			g.drawString("Nombre Proyecto: "+this.proyecto.getNombre(), (this.getWidth()/2)-95, (this.getHeight()/2)-70);
-			g.drawString("Descripcion: "+this.proyecto.getDescripcion(), (this.getWidth()/2)-95, (this.getHeight()/2)-50);
-			g.drawString("Fecha Inicio: "+this.proyecto.getFecha_inicio(), (this.getWidth()/2)-95, (this.getHeight()/2)-30);
-			g.drawString("Fecha Final: "+this.proyecto.getFecha_final(), (this.getWidth()/2)-95, (this.getHeight()/2)-10);
-			g.drawString("Numero Participantes: "+this.proyecto.getParticipantes().size(), (this.getWidth()/2)-95, (this.getHeight()/2)+10);
-			g.drawString("Participantes: " + this.proyecto.getParticipantes().keySet(), (this.getWidth()/2)-250, (this.getHeight()/2)+30);
+			g.drawString("Nombre Proyecto: "+this.proyecto.getNombre(), (this.getWidth()/2)-495, (this.getHeight()/2)-70);
+			g.drawString("Descripcion: "+this.proyecto.getDescripcion(), (this.getWidth()/2)-495, (this.getHeight()/2)-50);
+			g.drawString("Fecha Inicio: "+this.proyecto.getFecha_inicio(), (this.getWidth()/2)-495, (this.getHeight()/2)-30);
+			g.drawString("Fecha Final: "+this.proyecto.getFecha_final(), (this.getWidth()/2)-495, (this.getHeight()/2)-10);
+			g.drawString("Numero Participantes: "+this.proyecto.getParticipantes().size(), (this.getWidth()/2)-495, (this.getHeight()/2)+10);
+			g.drawString("Participantes: " + this.proyecto.getParticipantes().keySet(), (this.getWidth()/2)-550, (this.getHeight()/2)+30);
 			
 			
 				

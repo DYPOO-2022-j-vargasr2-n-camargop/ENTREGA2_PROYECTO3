@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 
 @SuppressWarnings("serial")
 public class MostrarInfoproy extends JFrame{
 
 	private PLienzo pLienzo;
+	private JScrollPane sp;
 	
 	public MostrarInfoproy(Ventana1 V) {
 		
@@ -23,8 +25,16 @@ public class MostrarInfoproy extends JFrame{
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		
+		sp = new JScrollPane();
+		sp.setBounds(5, 10, this.getWidth(), this.getHeight());
+		
 		pLienzo = new PLienzo(V.getProyecto());
-		this.add(pLienzo,BorderLayout.CENTER);
+		pLienzo.setPreferredSize(new Dimension(this.getWidth()+600, this.getHeight()));
+		
+		sp.setViewportView(pLienzo);
+		
+		
+		this.add(sp,BorderLayout.CENTER);
 			
 	}
 	

@@ -1,4 +1,8 @@
-Observador,Interfaz,Jeronimo,Implementacion,2022-05-02,03:06:44.429353500,12:00,533.25
-persistencia,persistencia datos,Jeronimo,Implementacion,2022-04-18,20:06:44.424243800,22:00,113.25
-Interfaz Inputs,textfields,Nicolas,Implementacion,2022-04-28,12:00,13:00,60.0
-Bosquejo,modelo interfaz,Nicolas,Diseño,2022-04-19,16:00,18:00,120.0
+AVANCE REPORTES,Se desarrolla codigo para generar reportes,Nicolas Camargo,Implementacion,2022-05-05,13:00,17:00,240.0
+Documentacion Reports,Documentacion de la implementacion de reportes,Nicolas Camargo,Documentacion,2022-05-14,17:58,21:43,225.0
+Aporte Doc Diseño,Se registra las iteraciones iniciales,Nicolas Camargo,Diseño,2022-05-09,18:40,21:28,168.0
+DOCUMENTO DISEÑO,Se comparte el documento y se establece un esqueleto,Jeronimo Vargas,Diseño,2022-05-08,18:47,21:28,161.0
+Entrega Final,Finalizacion de la implementacion,Jeronimo Vargas,Implementacion,2022-05-29,12:00,19:39,459.0
+AVANCE WBS,Se crea el objeto y se escribe codigo,Jeronimo Vargas,Implementacion,2022-05-03,12:00,14:00,120.0
+Pruebas WBS,Analisis de funcionamiento,Jeronimo Vargas,Pruebas,2022-05-24,08:30,11:45,195.0
+Documentacion Cod - WBS,Se documenta la implementacion que genera el WBS,Jeronimo Vargas,Documentacion,2022-05-12,09:24,12:17,173.0

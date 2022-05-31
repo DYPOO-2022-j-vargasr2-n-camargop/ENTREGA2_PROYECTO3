@@ -12,6 +12,7 @@ import logica.Reporte;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -654,7 +655,10 @@ public class Ventana1 extends JFrame {
 		JButton btnWBS = new JButton("Generar WBS");
 		btnWBS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				generar_wbs();
 			}
+
 		});
 		
 		JButton btnReporteGraficas = new JButton("Reporte Graficas");
@@ -907,6 +911,13 @@ public class Ventana1 extends JFrame {
 		});
 		
 	} //////////////INPUTS/////////////////
+	
+	private void generar_wbs() {
+		
+		Fwbs wbs = new Fwbs(this);
+		wbs.setVisible(true);
+		
+	}
 
 
 	protected void realizar_reporte() {
@@ -953,6 +964,8 @@ public class Ventana1 extends JFrame {
 		this.textField_tituloactCrono.setText("");
 		this.textField_descripcionCrono.setText("");
 		this.textField_tipoactCrono.setText("");
+		
+		JOptionPane.showMessageDialog(this,"La actividad fue agregada a la Tarea "+tipo);
 	}
 
 
@@ -985,6 +998,7 @@ public class Ventana1 extends JFrame {
 	}
 
 
+	@SuppressWarnings("static-access")
 	protected void agregar_actividad() {
 		String autor = this.textField_autorActividad.getText();
 		String titulo = this.textField_tituloActividad.getText();
@@ -1011,6 +1025,7 @@ public class Ventana1 extends JFrame {
 		this.textField_AddHoraInicial.setText("");
 		this.textField_Addhorafinal.setText("");
 		
+		JOptionPane.showMessageDialog(this,"La actividad fue agregada a la Tarea "+tipo);
 	}
 
 
