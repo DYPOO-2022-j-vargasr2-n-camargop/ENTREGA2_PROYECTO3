@@ -651,7 +651,7 @@ public class Ventana1 extends JFrame {
 						.addComponent(btnCargartodo))
 					.addContainerGap(230, Short.MAX_VALUE))
 		);
-		
+////////////////////////////////////////////////		
 		JButton btnWBS = new JButton("Generar WBS");
 		btnWBS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -660,8 +660,20 @@ public class Ventana1 extends JFrame {
 			}
 
 		});
-		
+////////////////////////////////////////////////		
 		JButton btnReporteGraficas = new JButton("Reporte Graficas");
+		btnReporteGraficas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				generar_graficas();
+				
+			}
+
+		});
+		
+		
 		GroupLayout gl_panelWBS = new GroupLayout(panelWBS);
 		gl_panelWBS.setHorizontalGroup(
 			gl_panelWBS.createParallelGroup(Alignment.LEADING)
@@ -911,6 +923,14 @@ public class Ventana1 extends JFrame {
 		});
 		
 	} //////////////INPUTS/////////////////
+	
+
+	private void generar_graficas() {
+		Freportesgraficas graficas = new Freportesgraficas(this);
+		graficas.setVisible(true);
+		
+	}
+	
 	
 	private void generar_wbs() {
 		

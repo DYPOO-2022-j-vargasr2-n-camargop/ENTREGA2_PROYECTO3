@@ -61,12 +61,43 @@ public class Proyecto {
 			}	
 		}
 		
-		
-		
-		
 		return infowbs;
 	}
 	
+	public HashMap<String,Double> infografica1(){
+		
+		HashMap<String,Double> info = new HashMap<String,Double>();
+		
+		for (String parti : Participantes.keySet()) {
+			
+			info.put(parti, Participantes.get(parti).calcular_tiempo_invertidototal());
+		}
+		
+		return info; 
+	}
+	
+	
+	public HashMap<String,Double> infografica2(){
+		
+		HashMap<String,Double> info = new HashMap<String,Double>();
+		
+		HashMap<String,ArrayList<Actividad>> Actis_Tareas = this.infowbs();
+		
+		for (String Tarea : Actis_Tareas.keySet()) {
+			
+			double Time = 0;
+			for (Actividad Acti : Actis_Tareas.get(Tarea)) {
+				
+				Time += Acti.getTiempo_invertido();
+			}
+			
+			info.put(Tarea, Time);
+			
+		}
+		
+		
+		return info; 
+	}
 	
 	
 	
