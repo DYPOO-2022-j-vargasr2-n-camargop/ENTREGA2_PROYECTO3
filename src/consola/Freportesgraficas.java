@@ -53,7 +53,7 @@ public class Freportesgraficas extends JFrame{
 		
 		PieDataset dataset2 = datasetGrafica2(V.getProyecto());
 		
-		JFreeChart chart2 = ChartFactory.createPieChart("Tiempo Invertido por Tarea", 
+		JFreeChart chart2 = ChartFactory.createPieChart("Tiempo Invertido por Tarea en minutos", 
 				dataset2,
 				true,true,false);
 		
